@@ -1,0 +1,224 @@
+<div class="row">
+    <h2>Last measure {{actual.period | date:'medium'}}</h2>
+    
+</div>
+
+<div class="row">
+    
+       <div class="col-lg-3">
+         <div class="panel panel-info">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-info-circle fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                   <p  class="announcement-heading">{{actual.temp_in}}°</p>
+                 <p class="announcement-text">Indoor temperature</p>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+    
+       <div class="col-lg-3">
+         <div class="panel panel-info">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-info-circle fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                   <p  class="announcement-heading">{{actual.temp_out}}°</p>
+                 <p class="announcement-text">Outdoor temperature</p>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+    
+       <div class="col-lg-3">
+         <div class="panel panel-info">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-info-circle fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                   <p  class="announcement-heading">{{actual.dewpoint}}°C</p>
+                 <p class="announcement-text">Dewpoint</p>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+    
+       <div class="col-lg-3">
+         <div class="panel panel-info">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-location-arrow fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                 <p class="announcement-heading">{{actual.wind_chill}}°C</p>
+                 <p class="announcement-text">Windchill</p>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>    
+ 
+</div>
+    
+ <div class="row"> 
+     
+       <div class="col-lg-3">
+         <div class="panel panel-danger">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-bars fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                 <p class="announcement-heading">{{actual.rel_hum_in}}%</p>
+                 <p class="announcement-text">Indoor humidity</p>
+               </div>
+             </div>
+           </div>        
+         </div>
+       </div>  
+     
+       <div class="col-lg-3">
+         <div class="panel panel-danger">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-bars fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                 <p class="announcement-heading">{{actual.rel_hum_out}}%</p>
+                 <p class="announcement-text">Outdoor humidity</p>
+               </div>
+             </div>
+           </div>
+           
+         </div>
+       </div>
+     
+        <div class="col-lg-3">
+         <div class="panel panel-warning">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-location-arrow fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                 <p class="announcement-heading">{{actual.windspeed}}m/s</p>
+                 <p class="announcement-text">Wind speed</p>
+               </div>
+             </div>
+           </div>
+          
+         </div>
+       </div>    
+     
+   
+       <div class="col-lg-3">
+         <div class="panel panel-warning">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-location-arrow fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                 <p class="announcement-heading">{{actual.wind_angle}}°</p>
+                 <p class="announcement-text">Wind angle</p>
+               </div>
+             </div>
+           </div>
+          
+         </div>
+       </div>   
+      
+ </div>
+    
+    
+  
+<div class="row">  
+ 
+           <div class="col-lg-3">
+         <div class="panel panel-danger">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-globe fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                 <p class="announcement-heading">{{actual.rel_pressure}}hPa</p>
+                 <p class="announcement-text">Relative pressure</p>
+               </div>
+             </div>
+           </div>
+           
+         </div>
+       </div>
+
+    
+    
+       <div class="col-lg-3">
+         <div class="panel panel-success">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-cloud-download fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                 <p class="announcement-heading">{{actual.rain_1h}}mm</p>
+                 <p class="announcement-text">Rain (1h)</p>
+               </div>
+             </div>
+           </div>
+         
+         </div>
+       </div>
+    
+     
+       <div class="col-lg-3">
+         <div class="panel panel-success">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-cloud-download fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                 <p class="announcement-heading">{{actual.rain_24h}}mm</p>
+                 <p class="announcement-text">Rain (24h)</p>
+               </div>
+             </div>
+           </div>
+         
+         </div>
+       </div>
+    
+    
+
+    
+       <div class="col-lg-3">
+         <div class="panel panel-success">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col-xs-3">
+                 <i class="fa fa-cloud-download fa-4x"></i>
+               </div>
+               <div class="col-xs-9 text-right">
+                 <p class="announcement-heading">{{actual.rain_total}}mm</p>
+                 <p class="announcement-text">Rain (total)</p>
+               </div>
+             </div>
+           </div>
+         
+         </div>
+       </div>
+    
+</div>

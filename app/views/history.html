@@ -1,0 +1,78 @@
+
+<div class="row">  
+    <h2>{{period_title}}</h2>
+    <p>Period from <strong>{{results.beginDate | date:'medium'}}</strong> to <strong>{{results.endDate |  date:'medium'}}</strong></p>
+  
+    <div class="btn-group">
+        <button type="button" class="btn btn-default" ng-click="showDaily()">Daily</button>
+        <button type="button" class="btn btn-default" ng-click="showWeekly()">Weekly</button>
+        <button type="button" class="btn btn-default" ng-click="showMonthly()">Monthly</button>
+        <button type="button" class="btn btn-default" ng-click="showYearly()">Yearly</button>
+        <button type="button" class="btn btn-default" ng-click="showCustom()">Custom</button>
+    </div>
+   
+</div>
+
+<div ng-show="hasValues">
+    <div class="row">  
+        <div class="col-lg-6">
+            <!--
+            <highchart id="chartTemps" config="chartConfigTemp" ></highchart>
+                   -->
+
+            <nvd3-line-chart
+                    data="tempsData"
+                    width="600"
+                    height="350"
+                    showXAxis="true"
+                    showYAxis="true"
+                    showLegend="true"
+                   >
+            </nvd3-line-chart>
+
+            <table class="table table-condensed table-bordered" >
+                <thead><tr><th></th><th>Min</th><th>Max</th><th>Avg</th></tr></thead>
+                <tbody>
+                    <tr><td>Indoor</td><td>{{temps_in | min}}°C</td><td>{{temps_in | max}}°C</td><td>{{temps_in | avg : 1}}°C</td></tr>
+                    <tr><td> Outdoor</td><td>{{temps_out | min}}°C</td><td>{{temps_out | max}}°C</td><td>{{temps_out | avg : 1}}°C</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <highchart id="chartHum" config="chartConfigHum" ></highchart>
+            <table class="table table-condensed table-bordered" >
+                <thead><tr><th></th><th>Min</th><th>Max</th><th>Avg</th></tr></thead>
+                <tbody>
+                    <tr><td>Indoor</td><td>{{results.hum_in | min}}%</td><td>{{results.hum_in | max}}%</td><td>{{results.hum_in | avg : 1}}%</td></tr>
+                    <tr><td>Outdoor</td><td>{{results.hum_out | min}}%</td><td>{{results.hum_out | max}}%</td><td>{{results.hum_out | avg : 1}}%</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">   
+        <div class="col-lg-6">
+            <highchart id="chartPressure" config="chartConfigPressure" ></highchart>
+            <table class="table table-condensed table-bordered" >
+                <thead><tr><th></th><th>Min</th><th>Max</th><th>Avg</th></tr></thead>
+                <tbody>
+                    <tr><td>Rel. Pressure</td><td>{{results.pressures | min}} hPa</td><td>{{results.pressures | max}} hPa</td><td>{{results.pressures | avg : 1}} hPa</td></tr>
+                </tbody>
+            </table>
+        </div>
+          <div class="col-lg-6">
+            <highchart id="chartWind" config="chartConfigWind" ></highchart>
+             <table class="table table-condensed table-bordered" >
+                <thead><tr><th></th><th>Min</th><th>Max</th><th>Avg</th></tr></thead>
+                <tbody>
+                    <tr><td>Wind</td><td>{{results.wind_speeds | min}} m/s</td><td>{{results.wind_speeds | max}} m/s</td><td>{{results.wind_speeds | avg : 2}} m/s</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
