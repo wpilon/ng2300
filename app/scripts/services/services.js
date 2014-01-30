@@ -44,41 +44,48 @@ angular.module('ng2300App.services', [])
     this.getChartsConfig =  function (data, dateFormat){
         
         var currentService = this;
-        var start = data.periods[0];
-        var interval = data.periods[1] - data.periods[0]; // one day
-        console.log(start);
-        console.log(interval);
+        var start = data.getPeriods()[0];
+        var interval = data.getPeriods()[1]- data.getPeriods()[0];
+        //console.log(start);
+        //console.log(interval);
         
         var configs = {
 
         chartConfigTemp : currentService.getChart(
                 [
-                    {name: 'Indoor',    data: data.temps_in}, 
-                    {name: 'Outdoor',   data: data.temps_out}, 
-                    {name: 'Windchill', data: data.wind_chills}, 
-                    {name: 'Dewpoint',  data: data.dewpoints}, 
+                    {name: 'Indoor',    data: data.getMeasures("temp_in")    },
+                    {name: 'Outdoor',   data: data.getMeasures("temp_out")   },
+                    {name: 'Windchill', data: data.getMeasures("wind_chill") },
+                    {name: 'Dewpoint',  data: data.getMeasures("dewpoint")   }
                 ],
-                data.periods,
+                data.getPeriods(),
                 'Temperatures', '', '° Celcius', dateFormat
                 ),
+
         chartConfigHum : currentService.getChart(
                 [   
-                    {name: 'Indoor',    data: data.hum_in}, 
-                    {name: 'Outdoor',   data: data.hum_out}, 
+                    {name: 'Indoor',    data: data.getMeasures("rel_hum_in")},
+                    {name: 'Outdoor',   data: data.getMeasures("rel_hum_out")}
                 ],
-                data.periods,
+                data.getPeriods(),
                 'Hygrometry', '', '%', dateFormat
                 ),
          chartConfigPressure : currentService.getChart(
-                [   {name: 'Pressure',  data: data.pressures}],
-                data.periods,
+                [
+                    {name: 'Pressure',  data: data.getMeasures("rel_pressure")}
+                ],
+                data.getPeriods(),
                 'Relative Pressure', '', 'hPa', dateFormat
                 ),
          chartConfigWind : currentService.getChart(
-                [   {name: 'Wind',      data: data.wind_speeds}],
-                data.periods,
+                [
+                    {name: 'Wind',      data: data.getMeasures("windspeed")}
+                ],
+                data.getPeriods(),
                 'Wind speed', '', 'm/s', dateFormat
                 )
+
+
         };
         return configs;
    };
@@ -92,56 +99,27 @@ angular.module('ng2300App.services', [])
 
         $http({method: 'jsonp', url: 'http://www.wilfried-pilon.net/dev/NG2300/services/history.php?begin=' + begin + '&end=' + end + '&group=' + group + "&callback=JSON_CALLBACK"}).
                 success(function(data, status, headers, config) {
-/*
-                    var beginDate = new Date(data[0].period);
-                    var endDate = new Date(data[data.length - 1].period);
-
-                    var temps_in = [];
-                    var temps_out = [];
-                    var hum_in = [];
-                    var hum_out =[];
-                    var dewpoints = [];
-                    var periods = [];
-                    var pressures = [];
-                    var  wind_chills= [];
-                    var  wind_speeds= [];
-                    var  wind_angles= [];
-
-                    angular.forEach(data, function(entry){
-                    //data.forEach(function(entry) {
-                        var curDate = new Date(entry.period);
-                        var utcPreriod =  Date.UTC(curDate.getYear(), curDate.getMonth(), curDate.getDay(), curDate.getHours(), curDate.getMinutes());
-                        
-                        periods.push(curDate);
-
-                        temps_in.push(Number(entry.temp_in));
-                        temps_out.push(Number(entry.temp_out));
-                        hum_in.push(Number(entry.rel_hum_in));
-                        hum_out.push(Number(entry.rel_hum_out));
-                        dewpoints.push(Number(entry.dewpoint));
-                        pressures.push(Number(entry.rel_pressure));
-                        wind_chills.push(Number(entry.wind_chill));
-                        wind_speeds.push(Number(entry.windspeed));
-                        wind_angles.push(Number(entry.wind_angle));
-                    });
 
                     var results = {
-                        'periods': periods,
-
-                        'beginDate': beginDate,
-                        'endDate': endDate,
-                        'temps_in': temps_in,
-                        'temps_out': temps_out,
-                        'hum_in': hum_in,
-                        'hum_out': hum_out,
-                        'dewpoints': dewpoints,
-                        'pressures' : pressures ,
-                        'wind_chills' : wind_chills,
-                        'wind_speeds' : wind_speeds,
-                        'wind_angles' : wind_angles
+                        rows : data,
+                        getMeasures : function(measure) {
+                            return data.map(
+                                function(row){
+                                    return parseFloat(row[measure]);
+                                }
+                            );
+                        },
+                        getPeriods : function() {
+                            return data.map(
+                                function(row){
+                                    return new Date(row.period);
+                                }
+                            );
+                        }
                     };
-*/
-                    deferred.resolve(data);
+
+
+                    deferred.resolve( results);
                 }).
                 error(function(data, status, headers, config) {
                     //deferred.reject(data);
@@ -154,8 +132,6 @@ angular.module('ng2300App.services', [])
 
     this.getActual = function(){
         var deferred = $q.defer();
-
-
         $http({method: 'jsonp', url: 'http://www.wilfried-pilon.net/dev/NG2300/services/actual.php?callback=JSON_CALLBACK'}).
                 success(function(data, status, headers, config) {
                     deferred.resolve(data[0]);
@@ -163,8 +139,6 @@ angular.module('ng2300App.services', [])
                 error(function(data, status, headers, config) {
                     //deferred.reject(data);
                     console.log("aie...");
-                    console.log(headers);
-                    console.log(headers('Cache-Control'));
                 });
 
         return deferred.promise;

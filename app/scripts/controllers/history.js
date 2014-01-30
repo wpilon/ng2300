@@ -42,52 +42,27 @@ angular.module('ng2300App')
         $scope.showGraphs(begin, end, group, dateFormat);
     };
 
-    $scope.showGraphs = function(begin, end, diviser, dateFormat){
+
+    $scope.xAxisTickFormat_Date_Format = function(){
+        return function(d){
+            return d3.time.format('%x')(new Date(d));
+        }
+    }
+
+    $scope.showGraphs = function(begin, end,  diviser, dateFormat){
         var promise = WeatherService.getWeatherValues(begin, end, diviser);
-        promise.then(function(data) {
+        promise.then(function(results) {
 
 
-            $scope.results =  data;
-
-
-            $scope.getValues = function(metricName){
-                var v = [];
-                angular.forEach($scope.results, function(entry){
-                    v.push(parseFloat(entry[metricName]));
-                });
-                return v;
-            };
-
-
-
-            //var tempsPoints = data.map(function(entry){return [ new Date(entry.period), parseFloat(entry.temp_in)];});
-
-            $scope.tempsData = [
-                {
-                    "key": "Indoor",
-                    "values": data.map(function(entry){return [ new Date(entry.period), parseFloat(entry.temp_in)];})
-                },
-                {
-                    "key": "Outdoor",
-                    "values": data.map(function(entry){return [ new Date(entry.period), parseFloat(entry.temp_out)];})
-                },
-            ];
-
-
-
-
-
-
-            $scope.temps_in = data.map(function(entry){return  parseFloat(entry.temp_in);});
-            $scope.temps_out = data.map(function(entry){return  parseFloat(entry.temp_out);});
+            $scope.results =  results;
 
             $scope.hasValues = true;
 
-            //var configs = ChartService.getChartsConfig(data, dateFormat);
-            //$scope.chartConfigTemp = configs.chartConfigTemp;
-            //$scope.chartConfigHum = configs.chartConfigHum;
-            //$scope.chartConfigPressure = configs.chartConfigPressure;
-            //$scope.chartConfigWind = configs.chartConfigWind;
+            var configs = ChartService.getChartsConfig(results, dateFormat);
+            $scope.chartConfigTemp = configs.chartConfigTemp;
+            $scope.chartConfigHum = configs.chartConfigHum;
+            $scope.chartConfigPressure = configs.chartConfigPressure;
+            $scope.chartConfigWind = configs.chartConfigWind;
 
         });
     };

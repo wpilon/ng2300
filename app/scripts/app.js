@@ -9,7 +9,8 @@ angular.module('ng2300App', [
   'ng2300App.filters',
   'ng2300App.directives',
   'frapontillo.ex.filters',
-  'nvd3ChartDirectives'
+  'nvd3ChartDirectives',
+  'highcharts-ng'
 ])
 
     .config(['$routeProvider', function($routeProvider) {
