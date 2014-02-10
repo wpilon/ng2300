@@ -97,7 +97,7 @@ angular.module('ng2300App.services', [])
 
         var deferred = $q.defer();
 
-        $http({method: 'jsonp', url: 'http://www.wilfried-pilon.net/dev/NG2300/services/history.php?begin=' + begin + '&end=' + end + '&group=' + group + "&callback=JSON_CALLBACK"}).
+        $http({method: 'jsonp', url: 'http://www.wilfried-pilon.net/services/history.php?begin=' + begin + '&end=' + end + '&group=' + group + "&callback=JSON_CALLBACK"}).
                 success(function(data, status, headers, config) {
 
                     var results = {
@@ -132,7 +132,7 @@ angular.module('ng2300App.services', [])
 
     this.getActual = function(){
         var deferred = $q.defer();
-        $http({method: 'jsonp', url: 'http://www.wilfried-pilon.net/dev/NG2300/services/actual.php?callback=JSON_CALLBACK'}).
+        $http({method: 'jsonp', url: 'http://www.wilfried-pilon.net/services/actual.php?callback=JSON_CALLBACK'}).
                 success(function(data, status, headers, config) {
                     deferred.resolve(data[0]);
                 }).

@@ -9,28 +9,27 @@ angular.module('ng2300App', [
   'ng2300App.filters',
   'ng2300App.directives',
   'frapontillo.ex.filters',
-  'nvd3ChartDirectives',
   'highcharts-ng'
 ])
 
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/actual',
-            {
-                templateUrl :   'views/actual.html',
-                controller : 'ActualCtrl'
-            });
-        $routeProvider.when('/history',
-            {
-                templateUrl :   'views/history.html',
-                controller : 'HistoryCtrl'
-            });
-        $routeProvider.when('/climat',
-            {
-                templateUrl : 'views/climat.html',
-                controller : 'ClimatCtrl'
-            });
-        $routeProvider.otherwise(
-            {
-                redirectTo : '/actual'
-            });
-    }]);
+.config(['$routeProvider', function($routeProvider) {
+$routeProvider.when('/actual',
+    {
+        templateUrl :   'views/actual.html',
+        controller : 'ActualCtrl'
+    });
+$routeProvider.when('/history',
+    {
+        templateUrl :   'views/history.html',
+        controller : 'HistoryCtrl'
+    });
+$routeProvider.when('/climat',
+    {
+        templateUrl : 'views/climat.html',
+        controller : 'ClimatCtrl'
+    });
+$routeProvider.otherwise(
+    {
+        redirectTo : '/actual'
+    });
+}]);

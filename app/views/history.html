@@ -48,8 +48,8 @@
                     <table class="table table-condensed table-bordered" >
                         <thead><tr><th></th><th>Min</th><th>Max</th><th>Avg</th></tr></thead>
                         <tbody>
-                            <tr><td>Indoor</td><td>{{results.getMeasures("hum_in") | min}}%</td><td>{{results.getMeasures("hum_in") | max}}%</td><td>{{results.getMeasures("hum_in") | avg : 1}}%</td></tr>
-                            <tr><td>Outdoor</td><td>{{results.getMeasures("hum_out") | min}}%</td><td>{{results.getMeasures("hum_out") | max}}%</td><td>{{results.getMeasures("hum_out ") | avg : 1}}%</td></tr>
+                            <tr><td>Indoor</td><td>{{results.getMeasures("rel_hum_in") | min}}%</td><td>{{results.getMeasures("rel_hum_in") | max}}%</td><td>{{results.getMeasures("rel_hum_in") | avg : 1}}%</td></tr>
+                            <tr><td>Outdoor</td><td>{{results.getMeasures("rel_hum_out") | min}}%</td><td>{{results.getMeasures("rel_hum_out") | max}}%</td><td>{{results.getMeasures("rel_hum_out") | avg : 1}}%</td></tr>
                         </tbody>
                     </table>
                </div>
@@ -70,7 +70,7 @@
                     <table class="table table-condensed table-bordered" >
                         <thead><tr><th></th><th>Min</th><th>Max</th><th>Avg</th></tr></thead>
                         <tbody>
-                            <tr><td>Rel. Pressure</td><td>{{pressures | min}} hPa</td><td>{{pressures | max}} hPa</td><td>{{pressures | avg : 1}} hPa</td></tr>
+                            <tr><td>Rel. Pressure</td><td>{{results.getMeasures("rel_pressure") | min}} hPa</td><td>{{results.getMeasures("rel_pressure") | max}} hPa</td><td>{{results.getMeasures("rel_pressure") | avg : 1}} hPa</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -88,7 +88,7 @@
                      <table class="table table-condensed table-bordered" >
                         <thead><tr><th></th><th>Min</th><th>Max</th><th>Avg</th></tr></thead>
                         <tbody>
-                            <tr><td>Wind</td><td>{{wind_speeds | min}} m/s</td><td>{{wind_speeds | max}} m/s</td><td>{{wind_speeds | avg : 2}} m/s</td></tr>
+                            <tr><td>Wind</td><td>{{results.getMeasures("windspeed") | min}} m/s</td><td>{{results.getMeasures("windspeed") | max}} m/s</td><td>{{results.getMeasures("windspeed") | avg : 2}} m/s</td></tr>
                         </tbody>
                     </table>
               </div>
